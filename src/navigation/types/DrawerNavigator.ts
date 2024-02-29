@@ -1,8 +1,9 @@
-import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { DrawerScreenProps } from '@react-navigation/drawer';
 
-export type DrawerParamList = {
+export type DrawerNavigatorParamList = {
   Home: undefined;
 };
 
-export type DrawerScreenProps<T extends keyof DrawerParamList> =
-  DrawerNavigationProp<DrawerParamList, T>;
+export type DrawerNavigatorScreenProps<
+  T extends keyof DrawerNavigatorParamList = keyof DrawerNavigatorParamList,
+> = DrawerScreenProps<DrawerNavigatorParamList, T>;
