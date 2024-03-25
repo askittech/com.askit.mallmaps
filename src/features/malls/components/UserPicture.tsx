@@ -1,17 +1,19 @@
-import { Image, Pressable, PressableProps, View } from 'react-native';
+import { Image, View, ViewProps } from 'react-native';
 
-export function UserPicture(props: PressableProps) {
+type Props = ViewProps & {
+  source: string;
+};
+
+export function UserPicture({ source, ...rest }: Props) {
   return (
-    <Pressable {...props} className="mr-3">
+    <View {...rest} className="mr-3">
       <Image
-        source={{
-          uri: 'https://politics.princeton.edu/sites/default/files/styles/square/public/images/p-5.jpeg',
-        }}
+        source={{ uri: source }}
         width={32}
         height={32}
         className="rounded-full"
       />
-      <View className="absolute bottom-0 right-0 w-[10] h-[10] bg-primary rounded-full" />
-    </Pressable>
+      <View className="absolute bottom-0 right-0 w-[10] h-[10] bg-primary rounded-full border-2 border-white" />
+    </View>
   );
 }

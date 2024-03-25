@@ -1,6 +1,6 @@
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 
-import IconsSet from '@/config/IconsSet.json';
+import MallMapsIconsSet from '@/lib/react-native-vector-icons/MallMapsIconsSet.json';
 
 export enum Icons {
   check = 'check',
@@ -9,4 +9,8 @@ export enum Icons {
   arrow_right = 'arrow-right',
 }
 
-export const Icon = createIconSetFromIcoMoon(IconsSet);
+export const Icon = createIconSetFromIcoMoon(
+  MallMapsIconsSet,
+  'MallMapsIconsSet',
+  'MallMapsIconsSet.ttf',
+);

@@ -1,1 +1,1 @@
-export { HomeScreen } from './HomeScreen';
+export { MallMapScreen } from './MallMapScreen';

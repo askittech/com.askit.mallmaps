@@ -1,12 +1,5 @@
-import { forwardRef, useImperativeHandle } from 'react';
-import {
-  PointerEvent,
-  Pressable,
-  Switch,
-  Text,
-  View,
-  ViewProps,
-} from 'react-native';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import { Pressable, Switch, Text, View, ViewProps } from 'react-native';
 import Animated, {
   useAnimatedProps,
   useAnimatedStyle,
@@ -16,10 +9,23 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { SCREEN_WIDTH } from '@/config/constants';
+import colors from '@/config/theme/colors';
+import { ConnectedContact } from '@/features/users/interfaces/contact';
 
 import { Contact } from './Contact';
 
-type Props = {};
+const CONNECTED_CONTACT_MOCK: ConnectedContact = {
+  user: {
+    photo: 'https://picsum.photos/300',
+    name: 'Carlos Osorio',
+    username: 'cosorio16',
+  },
+  distance: 200,
+};
+
+type Props = {
+  onContactPress: (contact: ConnectedContact) => void;
+};
 
 export type Methods = {
   toggle: () => void;
@@ -28,7 +34,9 @@ export type Methods = {
 const SNAP_POINT = SCREEN_WIDTH * (2 / 3);
 
 export const ContactsDrawer = forwardRef<Methods, Props>((props, ref) => {
-  const {} = props;
+  const { onContactPress } = props;
+
+  const [sharingLocation, setSharingLocation] = useState(false);
 
   const insets = useSafeAreaInsets();
 
@@ -81,14 +89,22 @@ export const ContactsDrawer = forwardRef<Methods, Props>((props, ref) => {
           5 contactos se encuentran aquí
         </Text>
         <View className="flex-1">
-          <Contact />
+          <Contact
+            contact={CONNECTED_CONTACT_MOCK}
+            onPress={() => onContactPress(CONNECTED_CONTACT_MOCK)}
+          />
         </View>
         <View className="w-4/7 h-[0.5] bg-gray-200 mb-3" />
         <View className="flex-row items-center justify-between">
           <Text className="font-primary font-semibold">
             Compartir ubicación
           </Text>
-          <Switch className="scale-50" />
+          <Switch
+            className="scale-50"
+            value={sharingLocation}
+            trackColor={{ true: colors.primary.DEFAULT }}
+            onValueChange={() => setSharingLocation(!sharingLocation)}
+          />
         </View>
       </Animated.View>
     </Animated.View>

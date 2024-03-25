@@ -1,5 +1,5 @@
 import { DrawerContent } from '@/components/DrawerContent';
-import { HomeScreen } from '@/features/malls';
+import { MallMapScreen } from '@/features/malls';
 import { DrawerNavigatorParamList } from '@/navigation/types/DrawerNavigator';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -9,9 +9,9 @@ export function DrawerNavigator() {
   return (
     <Drawer.Navigator drawerContent={DrawerContent}>
       <Drawer.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerTransparent: true, headerTitle: '' }}
+        name="MallMap"
+        component={MallMapScreen}
+        options={{ title: 'Mapa', headerTransparent: true, headerTitle: '' }}
       />
     </Drawer.Navigator>
   );

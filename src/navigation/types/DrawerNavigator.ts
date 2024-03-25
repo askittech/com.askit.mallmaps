@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 
 export type DrawerNavigatorParamList = {
-  Home: undefined;
+  MallMap: undefined;
 };
 
 export type DrawerNavigatorScreenProps<
