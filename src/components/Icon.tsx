@@ -7,6 +7,8 @@ export enum Icons {
   shop = 'shop',
   loupe = 'loupe',
   arrow_right = 'arrow-right',
+  cart = 'cart',
+  people = 'people',
 }
 
 export const Icon = createIconSetFromIcoMoon(

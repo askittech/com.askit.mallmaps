@@ -15,12 +15,14 @@ import { ConnectedContact } from '@/features/users/interfaces/contact';
 import { Contact } from './Contact';
 
 const CONNECTED_CONTACT_MOCK: ConnectedContact = {
+  id: 1,
   user: {
     photo: 'https://picsum.photos/300',
     name: 'Carlos Osorio',
     username: 'cosorio16',
   },
   distance: 200,
+  last_seen: '2 hours ago',
 };
 
 type Props = {
