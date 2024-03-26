@@ -13,7 +13,7 @@ type SearchCategoryBottomSheetProps = Omit<
   'children'
 > & {
   current: SearchCategory;
-  onSelect: (option: SearchCategory) => void;
+  onSelect: (option: SearchCategory, icon: Icons) => void;
 };
 
 const SNAP_POINTS = ['45%'];
@@ -38,19 +38,19 @@ export const SearchCategorySelect = forwardRef<
             label="Tiendas"
             icon={Icons.shop}
             selected={current === SearchCategory.Shop}
-            onPress={() => onSelect(SearchCategory.Shop)}
+            onPress={() => onSelect(SearchCategory.Shop, Icons.shop)}
           />
           <SearchCategoryOption
             label="Productos"
             icon={Icons.cart}
             selected={current === SearchCategory.Products}
-            onPress={() => onSelect(SearchCategory.Products)}
+            onPress={() => onSelect(SearchCategory.Products, Icons.cart)}
           />
           <SearchCategoryOption
             label="Contactos"
-            icon={Icons.people}
+            icon={Icons.user}
             selected={current === SearchCategory.Contacts}
-            onPress={() => onSelect(SearchCategory.Contacts)}
+            onPress={() => onSelect(SearchCategory.Contacts, Icons.user)}
           />
         </View>
       </View>

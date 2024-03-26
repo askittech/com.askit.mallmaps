@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 
+import { Icons } from '@/components/Icon';
 import { ConnectedContact } from '@/features/users/interfaces/contact';
 import { DrawerNavigatorScreenProps } from '@/navigation/types/DrawerNavigator';
 import { NativeStackNavigatorScreenProps } from '@/navigation/types/NativeStackNavigator';
@@ -15,6 +16,11 @@ import { SearchInput } from '../components/SearchInput';
 import { UserPicture } from '../components/UserPicture';
 import { SearchCategory } from '../enums/search';
 
+type SearchCategoryState = {
+  category: SearchCategory;
+  icon: Icons;
+};
+
 type Props = CompositeScreenProps<
   DrawerNavigatorScreenProps<'MallMap'>,
   NativeStackNavigatorScreenProps
@@ -24,9 +30,10 @@ export function MallMapScreen({ navigation }: Props) {
   const ref = useRef<Methods>(null);
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
-  const [searchCategory, setSearchCategory] = useState<SearchCategory>(
-    SearchCategory.Shop,
-  );
+  const [searchCategory, setSearchCategory] = useState<SearchCategoryState>({
+    category: SearchCategory.Shop,
+    icon: Icons.shop,
+  });
 
   const headerHeight = useHeaderHeight();
 
@@ -44,8 +51,8 @@ export function MallMapScreen({ navigation }: Props) {
     navigation.navigate('UserProfile', { id: contact.id });
   };
 
-  const onSearchCategorySelect = (option: SearchCategory) => {
-    setSearchCategory(option);
+  const onSearchCategorySelect = (category: SearchCategory, icon: Icons) => {
+    setSearchCategory({ category, icon });
     bottomSheetModalRef.current?.dismiss();
   };
 
@@ -53,11 +60,14 @@ export function MallMapScreen({ navigation }: Props) {
     <>
       <Map />
       <View style={{ marginTop: headerHeight }} className="p-4">
-        <SearchInput onFilter={() => bottomSheetModalRef.current?.present()} />
+        <SearchInput
+          icon={searchCategory.icon}
+          onFilter={() => bottomSheetModalRef.current?.present()}
+        />
       </View>
       <SearchCategorySelect
         ref={bottomSheetModalRef}
-        current={searchCategory}
+        current={searchCategory.category}
         onSelect={onSearchCategorySelect}
       />
       <ContactsDrawer ref={ref} onContactPress={onContactPress} />

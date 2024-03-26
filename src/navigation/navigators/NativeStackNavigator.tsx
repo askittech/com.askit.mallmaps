@@ -17,7 +17,11 @@ export function NativeStackNavigator() {
       <NativeStack.Screen
         name="UserProfile"
         component={UserProfileScreen}
-        options={{ headerTitle: '', headerBackTitle: 'Mapa' }}
+        options={{
+          headerTransparent: true,
+          headerTitle: '',
+          headerBackTitle: 'Mapa',
+        }}
       />
     </NativeStack.Navigator>
   );
